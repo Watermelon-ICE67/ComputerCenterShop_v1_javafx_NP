@@ -4,10 +4,10 @@
 
 ## Fitxa de l'equip
 
-- Integrants: **[nom i cognoms]** i **[nom i cognoms]**
-- Repositori compartit: **[URL del repositori]**
-- Branca de treball habitual: **[nom de la branca]**
-- Data d'inici: **[AAAA-MM-DD]**
+- Integrants: **[Noel Alvarez]** i **[Pau Nuet]**
+- Repositori compartit: **[https://github.com/Watermelon-ICE67/ComputerCenterShop_v1_javafx_NP.git]**
+- Branca de treball habitual: **[Main]**
+- Data d'inici: **[17/11/2026]**
 - Última actualització: **[AAAA-MM-DD]**
 
 ## Propòsit del projecte
@@ -18,11 +18,11 @@ El repositori ha de mostrar el procés de treball real de l'equip. No es tracta 
 
 ## Punt de partida
 
-- Repositori *starter* utilitzat: **[URL o nom del repositori]**
-- Gestor de base de dades relacional utilitzat: **[indiqueu-lo]**
-- Connector utilitzat: **[indiqueu-lo]**
-- Entorn de desenvolupament: **[indiqueu-lo]**
-- Comandament o acció que fem servir per comprovar l'execució: **[completeu-lo]**
+- Repositori *starter* utilitzat: **[https://github.com/Watermelon-ICE67/ComputerCenterShop_v1_javafx_NP.git]**
+- Gestor de base de dades relacional utilitzat: **[HP]**
+- Connector utilitzat: **[Jdbc]**
+- Entorn de desenvolupament: **[Eclipse]**
+- Comandament o acció que fem servir per comprovar l'execució: **[clean javafx:run]**
 
 > No incorporeu ORM, Hibernate, ObjectDB, MongoDB, serveis externs ni persistència principal en fitxers. Aquests elements no formen part de RA2.
 
@@ -41,7 +41,7 @@ Marqueu una tasca quan la prova i el rastre al repositori estiguin recollits. El
 
 ### M1 · Base JDBC operativa
 
-- [ ] [RA2-ISSUE-01 · Preparar el projecte JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
+- [X] [RA2-ISSUE-01 · Preparar el projecte JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
 - [ ] [RA2-ISSUE-02 · Connector, URL i connexió](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
 - [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
@@ -76,7 +76,21 @@ Dupliqueu aquest bloc per a cada *issue* que completeu. Escriviu amb les vostres
 - Decisió aplicada: **[què heu decidit fer i per què]**
 - Canvis fets: **[fitxers o parts del projecte modificades]**
 - Prova realitzada: **[cas que heu provat i resultat observat]**
-- Evidència: **[enllaç a captura, registre, vídeo breu o apartat del repositori]**
+- Evidència: **[]**
+- *Commit* o *pull request*: **[enllaç o identificador]**
+- Explicació individual: **[què pot explicar cada integrant sobre aquesta tasca]**
+- Ús d'IA, si n'hi ha hagut: **[consulta feta, ajuda rebuda i comprovació pròpia]**
+
+
+### RA2-ISSUE-01 · [Preparar el projecte JDBC]
+
+- Estat: **comprovat**
+- Persona que l'ha iniciat: **[Pau]**
+- Problema inicial: **[Verificar el funcionament]**
+- Decisió aplicada: **[Instal·lar, compilar i executar]**
+- Canvis fets: **[Executar desde el build]**
+- Prova realitzada: **[Executar desde el build]**
+- Evidència: **[veure captura1]**
 - *Commit* o *pull request*: **[enllaç o identificador]**
 - Explicació individual: **[què pot explicar cada integrant sobre aquesta tasca]**
 - Ús d'IA, si n'hi ha hagut: **[consulta feta, ajuda rebuda i comprovació pròpia]**
