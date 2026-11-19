@@ -22,9 +22,7 @@ public class ProductDaoImplJDBC implements ProductDao {
 		String user = System.getProperty("computercenter.db.user", DEFAULT_USER);
 		String password = System.getProperty("computercenter.db.password", DEFAULT_PASSWORD);
 
-		// TODO RA2-ISSUE-02: obrir la connexio amb DriverManager i guardar-la a conn.
-		// Pista: usa url, user i password, i comprova com es declara el connector al pom.xml.
-		throw pending("RA2-ISSUE-02 pendent: implementa la connexio JDBC amb DriverManager.");
+		conn = DriverManager.getConnection(url, user, password);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ Marqueu una tasca quan la prova i el rastre al repositori estiguin recollits. El
 ### M1 · Base JDBC operativa
 
 - [X] [RA2-ISSUE-01 · Preparar el projecte JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
-- [ ] [RA2-ISSUE-02 · Connector, URL i connexió](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
+- [X] [RA2-ISSUE-02 · Connector, URL i connexió](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
 - [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
 ### M2 · Operacions relacionals principals
@@ -91,9 +91,21 @@ Dupliqueu aquest bloc per a cada *issue* que completeu. Escriviu amb les vostres
 - Canvis fets: **[Executar desde el build]**
 - Prova realitzada: **[Executar desde el build]**
 - Evidència: **[veure captura1]**
-- *Commit* o *pull request*: **[enllaç o identificador]**
+- *Commit* o *pull request*: **[fe82412]**
 - Explicació individual: **[què pot explicar cada integrant sobre aquesta tasca]**
 - Ús d'IA, si n'hi ha hagut: **[consulta feta, ajuda rebuda i comprovació pròpia]**
+
+### RA2-ISSUE-02 · Connector, URL i connexió
+
+- Estat: **comprovat**
+- Persona que l'ha iniciat: **Pau Nuet**
+- Problema inicial: **`connect()` només llegia les propietats de sistema i llançava l'excepció "RA2-ISSUE-02 pendent" sense obrir cap connexió.**
+- Decisió aplicada: **Obrir la connexió amb `DriverManager.getConnection(url, user, password)` i guardar-la al camp `conn`. Es mantenen les propietats `computercenter.db.url`, `computercenter.db.user` i `computercenter.db.password`, amb valors per defecte d'H2 local, perquè la configuració es pugui canviar sense tocar el codi.**
+- Canvis fets: **`src/dao/ProductDaoImplJDBC.java` (mètode `connect()`).**
+- Prova realitzada: **Execució de `Ra2JdbcDemo`. Ja no apareix l'error de RA2-ISSUE-02 i el programa s'atura a l'error de RA2-ISSUE-03 (`initSchema`), que encara és pendent.**
+- Evidència: **[veure captura2]**
+- *Commit o pull request*: **[enllaç al commit]**
+- Explicació individual: **Puc explicar que `DriverManager` obre la connexió JDBC a partir de la URL, l'usuari i la contrasenya; que el connector és la dependència d'H2 del `pom.xml`; que `System.getProperty(clau, valorPerDefecte)` permet canviar la configuració amb `-D`; i que la connexió es guarda a `conn` perquè la resta de mètodes del DAO la puguin reutilitzar.**
 
 ## Proves que hem de poder repetir
 
