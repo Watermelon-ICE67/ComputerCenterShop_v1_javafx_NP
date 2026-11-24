@@ -43,7 +43,7 @@ Marqueu una tasca quan la prova i el rastre al repositori estiguin recollits. El
 
 - [X] [RA2-ISSUE-01 · Preparar el projecte JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
 - [X] [RA2-ISSUE-02 · Connector, URL i connexió](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
-- [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
+- [X] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
 ### M2 · Operacions relacionals principals
 
@@ -104,8 +104,20 @@ Dupliqueu aquest bloc per a cada *issue* que completeu. Escriviu amb les vostres
 - Canvis fets: **`src/dao/ProductDaoImplJDBC.java` (mètode `connect()`).**
 - Prova realitzada: **Execució de `Ra2JdbcDemo`. Ja no apareix l'error de RA2-ISSUE-02 i el programa s'atura a l'error de RA2-ISSUE-03 (`initSchema`), que encara és pendent.**
 - Evidència: **[veure captura2]**
-- *Commit o pull request*: **[enllaç al commit]**
+- *Commit o pull request*: **[fe82412]**
 - Explicació individual: **Puc explicar que `DriverManager` obre la connexió JDBC a partir de la URL, l'usuari i la contrasenya; que el connector és la dependència d'H2 del `pom.xml`; que `System.getProperty(clau, valorPerDefecte)` permet canviar la configuració amb `-D`; i que la connexió es guarda a `conn` perquè la resta de mètodes del DAO la puguin reutilitzar.**
+
+### RA2-ISSUE-03 · Implementar estructura relacional
+
+- Estat: **comprovat**
+- Persona que l'ha iniciat: **Pau Nuet**
+- Problema inicial: **`initSchema()` només llançava l'excepció "RA2-ISSUE-03 pendent" i no creava cap taula.**
+- Decisió aplicada: **Crear amb DDL, des del DAO i amb `Statement` dins d'un try-with-resources, les taules `products` i `inventory_history` (amb clau forana a `products`) i l'alias `STOCK_ALERT_LIMIT` que apunta al mètode `stockAlertLimit`. Es fa servir `CREATE ... IF NOT EXISTS` i el seed de 3 productes només s'insereix si la taula `products` és buida, perquè no es dupliquin dades en executar-ho més d'una vegada.**
+- Canvis fets: **`src/dao/ProductDaoImplJDBC.java` (mètode `initSchema()` i import de `Statement`).**
+- Prova realitzada: **Execució de `Ra2JdbcDemo` dues vegades: `initSchema()` passa sense error i el programa s'atura a l'error de RA2-ISSUE-07 (`getInventory`), que encara és pendent. La segona execució dona el mateix resultat, sense duplicats.**
+- Evidència: **[veure captura 3]**
+- *Commit o pull request*: **[fe82412]**
+- Explicació individual: **Puc explicar què és un DDL i per què faig servir `IF NOT EXISTS`; què fa la clau forana entre `inventory_history` i `products`; què és un alias a H2 i com enllaça amb el mètode Java `stockAlertLimit`; i per què comprovo `COUNT(*)` abans d'inserir el seed perquè no es dupliquin productes.**
 
 ## Proves que hem de poder repetir
 
