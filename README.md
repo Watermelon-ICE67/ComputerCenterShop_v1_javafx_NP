@@ -47,7 +47,7 @@ Marqueu una tasca quan la prova i el rastre al repositori estiguin recollits. El
 
 ### M2 · Operacions relacionals principals
 
-- [ ] [RA2-ISSUE-04 · Inserció de dades](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
+- [X] [RA2-ISSUE-04 · Inserció de dades](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
 - [ ] [RA2-ISSUE-05 · Actualització d'estoc](issues/RA2-ISSUE-05-actualitzar-estoc.md)
 - [ ] [RA2-ISSUE-06 · Eliminació controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
 - [ ] [RA2-ISSUE-07 · Consultes i resultats](issues/RA2-ISSUE-07-consultar-inventari-resultset.md)
@@ -118,6 +118,18 @@ Dupliqueu aquest bloc per a cada *issue* que completeu. Escriviu amb les vostres
 - Evidència: **[veure captura 3]**
 - *Commit o pull request*: **[fe82412]**
 - Explicació individual: **Puc explicar què és un DDL i per què faig servir `IF NOT EXISTS`; què fa la clau forana entre `inventory_history` i `products`; què és un alias a H2 i com enllaça amb el mètode Java `stockAlertLimit`; i per què comprovo `COUNT(*)` abans d'inserir el seed perquè no es dupliquin productes.**
+
+### RA2-ISSUE-04 · Implementar inserció amb PreparedStatement
+
+- Estat: **comprovat**
+- Persona que l'ha iniciat: **Pau Nuet**
+- Problema inicial: **`insertProduct()` només llançava l'excepció "RA2-ISSUE-04 pendent" i no inseria cap producte a la base de dades.**
+- Decisió aplicada: **Fer la inserció amb `PreparedStatement` i la sentència `INSERT INTO products(name, wholesaler_price, available, stock) VALUES (?, ?, ?, ?)`, assignant cada valor amb els setters i retornant el resultat d'`executeUpdate()` (files afectades). No es concatenen valors dins del SQL, i l'`id` el genera la base de dades.**
+- Canvis fets: **`src/dao/ProductDaoImplJDBC.java` (mètode `insertProduct()` i import de `PreparedStatement`).**
+- Prova realitzada: **Com que la consulta de l'ISSUE-07 encara és pendent, he fet una classe de prova temporal que insereix `Dock USB-C` i després consulta la taula amb JDBC. La inserció retorna 1 fila afectada i el producte apareix a la consulta posterior amb preu 35.00 i estoc 4.**
+- Evidència: **[veure captura4]**
+- *Commit o pull request*: **[fe82412]**
+- Explicació individual: **Puc explicar què és un `PreparedStatement` i per què els `?` eviten concatenar valors i la injecció SQL; què retorna `executeUpdate()`; per què l'`id` no s'assigna a mà (columna `IDENTITY`); i per què vaig haver de fer una prova a part per veure la consulta posterior.**
 
 ## Proves que hem de poder repetir
 

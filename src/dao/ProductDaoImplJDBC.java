@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.ArrayList;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 import model.Product;
 
@@ -88,8 +89,15 @@ public class ProductDaoImplJDBC implements ProductDao {
 
 	@Override
 	public int insertProduct(Product product) throws SQLException {
-		// TODO RA2-ISSUE-04: inserir name, wholesaler_price, available i stock amb PreparedStatement.
-		throw pending("RA2-ISSUE-04 pendent: implementa insercio amb PreparedStatement.");
+		String sql = "INSERT INTO products(name, wholesaler_price, available, stock) VALUES (?, ?, ?, ?)";
+
+		try (PreparedStatement statement = requireConnection().prepareStatement(sql)) {
+			statement.setString(1, product.getName());
+			statement.setDouble(2, product.getWholesalerPrice().getValue());
+			statement.setBoolean(3, product.isAvailable());
+			statement.setInt(4, product.getStock());
+			return statement.executeUpdate();
+		}
 	}
 
 	@Override
